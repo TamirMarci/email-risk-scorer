@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(Get-ChildItem -Path \"C:\\\\Users\\\\orilu\\\\Desktop\\\\Tamir\\\\gmail-malicious-scorer\\\\gmail-malicious-scorer\\\\backend\" -Recurse -File | ForEach-Object { $_.FullName })",
+      "Bash(Get-ChildItem -Path \"C:\\\\Users\\\\orilu\\\\Desktop\\\\Tamir\\\\gmail-malicious-scorer\\\\gmail-malicious-scorer\" -Recurse -Force)",
+      "Bash(Select-Object FullName)",
+      "Bash(Sort-Object FullName)",
+      "Bash(python gen_icons.py)",
+      "Bash(not exist *)",
+      "Bash(python -m pytest tests/test_scorer.py -v)",
+      "Bash(.venv/Scripts/pip install *)",
+      "Bash(.venv/Scripts/python -m pytest tests/test_scorer.py -v)"
+    ]
+  }
+}

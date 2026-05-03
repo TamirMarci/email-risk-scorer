@@ -1,0 +1,110 @@
+body {
+  width: 380px;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f8fafc;
+  color: #111827;
+}
+
+main { padding: 16px; }
+h1 { font-size: 18px; margin: 0 0 12px; }
+h2 { font-size: 14px; margin-top: 16px; }
+button {
+  width: 100%;
+  border: 0;
+  border-radius: 10px;
+  padding: 10px 12px;
+  background: #111827;
+  color: white;
+  cursor: pointer;
+  font-weight: 700;
+}
+button:disabled { opacity: 0.6; cursor: not-allowed; }
+#status { margin-top: 12px; font-size: 13px; color: #4b5563; }
+#result { margin-top: 14px; }
+
+/* ── Gauge ─────────────────────────────────────── */
+.gauge-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 6px;
+}
+#gauge-svg {
+  display: block;
+  width: 100%;
+  max-width: 240px;
+}
+.seg { stroke: #f8fafc; stroke-width: 1.5; }
+.seg-very-low { fill: #6b7280; }
+.seg-low      { fill: #2563eb; }
+.seg-medium   { fill: #d97706; }
+.seg-high     { fill: #dc2626; }
+.seg-critical { fill: #7c3aed; }
+#gauge-needle { transition: transform 0.45s ease-in-out; }
+
+/* Score + verdict below the arc */
+.gauge-readout { display: flex; align-items: baseline; gap: 10px; margin-top: 6px; }
+.score  { font-size: 32px; font-weight: 800; }
+.verdict { font-size: 18px; font-weight: 800; }
+
+/* Colour legend */
+.gauge-legend {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 8px;
+}
+.leg {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 4px;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+/* ── Verdict colour ─────────────────────────────── */
+.verdict-very-low { color: #6b7280; }
+.verdict-low      { color: #2563eb; }
+.verdict-medium   { color: #d97706; }
+.verdict-high     { color: #dc2626; }
+.verdict-critical { color: #7c3aed; }
+
+/* ── Action cards ───────────────────────────────── */
+#actions-section { margin-top: 4px; }
+details {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  margin: 6px 0;
+  padding: 8px 12px;
+}
+details[open] { border-color: #dc2626; }
+summary {
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 700;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+summary::-webkit-details-marker { display: none; }
+summary::before { content: "▶"; font-size: 9px; color: #6b7280; }
+details[open] summary::before { content: "▼"; }
+details ol { margin: 8px 0 2px; padding-left: 20px; }
+details li { font-size: 12px; margin: 4px 0; color: #374151; line-height: 1.4; }
+
+/* ── Signals ────────────────────────────────────── */
+.recommendation { font-size: 13px; color: #374151; margin-top: 6px; line-height: 1.35; }
+ul { padding-left: 18px; }
+li { margin: 8px 0; font-size: 13px; line-height: 1.35; }
+.badge { font-weight: 700; text-transform: uppercase; }
+.badge.trust { color: #16a34a; }
+.confidence  { font-size: 11px; color: #6b7280; font-weight: 600; }
+.contribution { font-size: 11px; color: #9333ea; font-weight: 600; }
+.score-adjustment { font-size: 11px; color: #6b7280; background: #f3f4f6; border-radius: 6px; padding: 6px 10px; margin-top: 8px; line-height: 1.4; }
+.disclaimer  { font-size: 10px; color: #9ca3af; margin-top: 14px; line-height: 1.4; text-align: center; }

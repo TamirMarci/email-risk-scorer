@@ -1,0 +1,87 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Email Risk Assessor</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main>
+      <h1>Email Risk Score</h1>
+      <button id="analyzeBtn">Analyze current email</button>
+      <section id="status">Open a Gmail message and click analyze.</section>
+      <section id="result" hidden>
+
+        <!-- Risk meter -->
+        <div class="gauge-wrap">
+          <!--
+            viewBox 220×115, center (110,110), outer R=100, inner r=82.
+            Segment angle boundaries (standard math, CCW from +x):
+              score 0→180°  25→135°  45→99°  65→63°  85→27°  100→0°
+            Arc sweep=1 (CW in SVG screen space = left→top→right through the arc).
+          -->
+          <svg id="gauge-svg" viewBox="0 0 220 115" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <!-- Very Low  0–24  gray -->
+            <path class="seg seg-very-low"
+                  d="M 10 110 A 100 100 0 0 1 39.3 39.3 L 52.0 52.0 A 82 82 0 0 0 28 110 Z"/>
+            <!-- Low  25–44  blue -->
+            <path class="seg seg-low"
+                  d="M 39.3 39.3 A 100 100 0 0 1 94.4 11.2 L 97.2 29.0 A 82 82 0 0 0 52.0 52.0 Z"/>
+            <!-- Medium  45–64  amber -->
+            <path class="seg seg-medium"
+                  d="M 94.4 11.2 A 100 100 0 0 1 155.4 20.9 L 147.2 36.9 A 82 82 0 0 0 97.2 29.0 Z"/>
+            <!-- High  65–84  red -->
+            <path class="seg seg-high"
+                  d="M 155.4 20.9 A 100 100 0 0 1 199.1 64.6 L 183.1 72.8 A 82 82 0 0 0 147.2 36.9 Z"/>
+            <!-- Critical  85–100  purple -->
+            <path class="seg seg-critical"
+                  d="M 199.1 64.6 A 100 100 0 0 1 210 110 L 192 110 A 82 82 0 0 0 183.1 72.8 Z"/>
+            <!-- Needle (starts pointing left = score 0) -->
+            <line id="gauge-needle"
+                  x1="110" y1="110" x2="110" y2="12"
+                  stroke="#111827" stroke-width="3" stroke-linecap="round"
+                  transform="rotate(-90 110 110)"/>
+            <circle cx="110" cy="110" r="6" fill="#111827"/>
+          </svg>
+
+          <!-- Score + verdict below the arc -->
+          <div class="gauge-readout">
+            <div id="score" class="score">--</div>
+            <div id="verdict" class="verdict">--</div>
+          </div>
+
+          <!-- Colour legend -->
+          <div class="gauge-legend">
+            <span class="leg seg-very-low">Very Low</span>
+            <span class="leg seg-low">Low</span>
+            <span class="leg seg-medium">Medium</span>
+            <span class="leg seg-high">High</span>
+            <span class="leg seg-critical">Critical</span>
+          </div>
+        </div>
+
+        <div id="recommendation" class="recommendation"></div>
+        <div id="score-adjustment" class="score-adjustment" hidden></div>
+
+        <!-- High/Critical action guidance -->
+        <section id="actions-section" hidden>
+          <h2>Recommended Actions</h2>
+          <div id="actions-list"></div>
+        </section>
+
+        <!-- Risk indicators -->
+        <h2>Risk Indicators</h2>
+        <ul id="reasons"></ul>
+
+        <!-- Trust signals (shown only when present) -->
+        <section id="trust-section" hidden>
+          <h2>Trust Signals</h2>
+          <ul id="trust-signals"></ul>
+        </section>
+
+      </section>
+      <p class="disclaimer">This tool provides heuristic risk estimation and is not definitive. Always apply your own judgement.</p>
+    </main>
+    <script src="popup.js"></script>
+  </body>
+</html>
