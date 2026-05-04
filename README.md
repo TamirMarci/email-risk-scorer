@@ -4,7 +4,7 @@ Context-aware email risk analysis for Gmail.
 
 Built as part of the Upwind Bootcamp assignment, this project analyzes an opened email and returns a risk score, verdict, explanations, and recommended actions.
 
-The focus of this project is not just detecting malicious emails — but handling real-world ambiguity, where legitimate emails often look suspicious.
+The focus of this project is not just detecting malicious emails - but handling real-world ambiguity, where legitimate emails often look suspicious.
 
 ---
 
